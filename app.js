@@ -4,12 +4,27 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const redis = require('redis')
+
+// init app
 const app = express()
 
-app.get('/', (req,res) => {
-    res.status(200).json({
-        message: 'Hello'
-    })
+// view engine
+app.engine('handlebars', hbs({
+    defaultLayout: 'main'
+}))
+app.set('view engine', 'handlebars')
+
+// body-parser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+
+// method override
+app.use(methodOverride('_method'))
+
+app.get('/', (req, res) => {
+    res.render('searchusers')
 })
 
 app.listen('3000', () => {

@@ -7,6 +7,7 @@ const redis = require('redis')
 
 // init app
 const app = express()
+app.use(express.static("public"))
 
 // view engine
 app.engine('handlebars', hbs({
@@ -27,6 +28,6 @@ app.get('/', (req, res) => {
     res.render('searchusers')
 })
 
-app.listen('3000', () => {
+app.listen('9000', () => {
     console.log('Server started on port 3000')
 })

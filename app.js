@@ -51,6 +51,29 @@ app.post('/users/search', (req,res,next) => {
     })
 })
 
+app.get('/users/add', (req, res, next) => {
+    res.render('adduser')
+})
+
+app.post('/users/add', (req,res,next) => {
+    const id = req.body.id
+    const name = req.body.name
+    const email = req.body.email
+    const phone = req.body.phone
+
+    client.hmset(id, [
+        'name', name,
+        'email', email,
+        'phone', phone
+    ], (err, reply) => {
+        if (err) {
+            console.log(err)
+        }
+        console.log(reply)
+        res.redirect('/')
+    })
+})
+
 app.listen('3000', () => {
     console.log('Server started on port 3000')
 })

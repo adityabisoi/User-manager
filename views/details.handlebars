@@ -3,4 +3,7 @@
     <li class="list-group-item"><strong>Email: </strong>{{user.email}}</li>
     <li class="list-group-item"><strong>Phone: </strong>{{user.phone}}</li>
 </ul>
-<a class="btn btn-default" href="/">Back</a>
+<br>
+<form action="/user/delete/{{user.id}}?_method=DELETE" method="post">
+    <input type="submit" value="Delete" class="btn btn-danger pull-right">
+</form>
